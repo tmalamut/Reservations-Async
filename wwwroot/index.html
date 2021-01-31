@@ -1,0 +1,48 @@
+<script>
+/**
+Add to the Reservations API project (new branch called reservations-by-name) by providing asynchronous functionality to retrieve reservations by name. 
+The endpoint should be accessible at http://localhost:5001/reservations/search?name=namehere, where namehere is the customer name. 
+The client should include a text box to get the name from the user.  Both the server and client code should be asynchronous. 
+Include a fake delay of no more than 5 seconds to simulate a resource-intensive process on the server side.
+**/
+async function getReservations() {
+    let response = await fetch("https://localhost:5001/reservations");
+    let jsonData = await response.json();
+    let data = JSON.stringify(jsonData);
+    console.log(data);
+    document.getElementById("p_reservations").innerHTML = data;
+}
+
+async function getReservationsByName () {
+    let name = document.getElementById("p_name").value;
+    let response = await fetch("https://localhost:5001/reservations/search?name="+name);
+    let jsonData = await response.json();
+    let data = JSON.stringify(jsonData);
+    console.log(data);
+    document.getElementById("p_reservationName").innerHTML = data;
+}
+
+function toggleColor() {
+    let p = document.getElementById("p_sandbox");
+    if(p.style.backgroundColor == "green") 
+        p.style.backgroundColor = "blue";
+    else if(p.style.backgroundColor == "blue")
+        p.style.backgroundColor = "green";
+    else p.style.backgroundColor = "green";
+}
+
+</script>
+
+
+<p id="p_reservations"> Get all reservations </p>
+<p><button onclick="getReservations()">Click to show all</button></p>
+
+<p> Get reservation by name </p>
+<input type="text" id="p_name" value="type name here"/>
+<p><button onclick="getReservationsByName()">Click to show by name</button></p>
+<p id="p_reservationName">Show name results here</p>
+
+
+
+<p id="p_sandbox">Sandbox</p>
+<p><button onclick="toggleColor()">Click to change color above</button></p>
