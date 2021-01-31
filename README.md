@@ -1,2 +1,2 @@
 # Reservations-Async
-Demonstrating asynchronous programming with an API (Fall '20)
+Demonstrating asynchronous programming with an API (Organization of Programming Languages - Fall '20)
